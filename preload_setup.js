@@ -35,4 +35,6 @@ function setup() {
 	controller.l.value = 1.0;
 	controller.select.value = help ? 1.0 : 0.0;
 	controller.b.value = sound.isPlaying() ? 1.0 : 0.0;
+	
+	console.clear();
 }

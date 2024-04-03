@@ -59,6 +59,7 @@ var
 function loaded() {
 	data.counter += 1;
 	// data.loading = data.counter >= numOfAssets ? false : true;
+	if(sound.isLoaded()) sound.loop();
 }
 
 function animateData(activeValues, targetValues, smoothFactor) {
