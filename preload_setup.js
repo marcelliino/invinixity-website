@@ -13,7 +13,7 @@ function setup() {
 
 	mic = new p5.AudioIn();
 	mic.amp(1.0);
-	mic.start();
+	// mic.start();
 	fft = new p5.FFT(0.25, 64);
 	fft.setInput(mic);
 	spectex = createImage(8, 8);
