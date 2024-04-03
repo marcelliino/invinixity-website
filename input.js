@@ -1,18 +1,41 @@
 function keyPressed() {
+
 	if (key == 'f' || key == 'F') {
 		let fs = fullscreen();
 		fullscreen(!fs);
 	}
 
-	if (key == '-' || key == '_') {
-		maxRayBounces = max(0, maxRayBounces - 1);
-	} else if (key == '=' || key == '+') {
-		maxRayBounces = min(6, maxRayBounces + 1);
+	if (key == 'p' || key == 'P') {
+		if (!sound.isPlaying()) sound.loop();
+		else sound.stop();
+	}
+
+	if (key == 'h' || key == 'H') {
+		controller.select.value = 1.0 - controller.select.value;
+	}
+
+	if (key == 'q' || key == 'Q') {
+		controller.l.value = 1.0 - controller.l.value;
+	}
+
+	if (key == 'e' || key == 'E') {
+		controller.r.value = 1.0 - controller.r.value;
+	}
+
+	if (key == 'r' || key == 'R') {
+		// reset freeView
+		freeView.target.x = 0;
+		freeView.target.y = 0;
+		freeView.target.z = 0;
+		// reset freeMove
+		freeMove.target.x = 0;
+		freeMove.target.y = 0;
+		freeMove.target.z = 0;
 	}
 
 }
 
 function mousePressed() {
-	// fps.minimum = 30;
-	// fps.maximum = 60;
+	fps.minimum = 30;
+	fps.maximum = 60;
 }

@@ -1,14 +1,15 @@
 let
-	font,
-	numOfAssets = 2,
-	mic, fft, spectex,
+	numOfAssets = 4,
+	mic, sound,
+	fft, spectex,
 	scene = {
-		pixScale: 0.4096
+		pixScale: 0.0625
 	};
 
 var
+	help = false,
 	data = {
-		loading: true,
+		loading: false,
 		counter: 0,
 		animate: 0
 	},
@@ -18,11 +19,50 @@ var
 		minimum: 12,
 		maximum: 30
 	},
-	maxRayBounces = 3;
+	mouseIsClicked = false,
+	mX = 0,
+	playButton = false,
+	accelerate = 0,
+	controller = {
+		label: ['a', 'b', 'x', 'y', 'l', 'r', 'lt', 'rt', 'up', 'down', 'left', 'right', 'lsb', 'rsb', 'start', 'select']
+	},
+	freeView = {
+		target: {
+			x: 0.0,
+			y: 4.0,
+			z: 0.0
+		},
+		current: {
+			x: 0.0,
+			y: 0.0,
+			z: 0.0
+		},
+		earlier: {
+			x: 0.0,
+			y: 0.0,
+			z: 0.0
+		}
+	},
+	freeMove = {
+		target: {
+			x: 0.0,
+			y: 4.0,
+			z: 0.0
+		},
+		current: {
+			x: 0.0,
+			y: 0.0,
+			z: 0.0
+		}
+	};
 
 function loaded() {
 	data.counter += 1;
-	data.loading = data.counter == numOfAssets ? false : true;
+	// data.loading = data.counter >= numOfAssets ? false : true;
+}
+
+function animateData(activeValues, targetValues, smoothFactor) {
+	return  activeValues * (1 - smoothFactor) + targetValues * smoothFactor;
 }
 
 function dynamicScaling(minFPS, maxFPS) {
@@ -41,8 +81,4 @@ function dynamicScaling(minFPS, maxFPS) {
 		// console.log('idle');
 	}
 
-}
-
-function animateData(activeValues, targetValues, smoothFactor) {
-	return  activeValues * (1 - smoothFactor) + targetValues * smoothFactor;
 }

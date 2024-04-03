@@ -4,23 +4,35 @@ function preload() {
 
 function setup() {
 
+	scene['hdri'] = loadImage('DiExposureSky4K.jpg', loaded);
+	scene['texture0'] = loadImage('coast_land_rocks_01_cnd_4k.png', loaded);
+	scene['texture1'] = loadImage('rocky_trail_02_cnd_4k.png', loaded);
+	sound = loadSound('a-gentle-breeze-wind-4-14681.mp3', loaded);
+
 	createCanvas(windowWidth, windowHeight);
 	pixelDensity(1);
 	noSmooth();
+	textFont('Courier New');
 
-	colorMode(HSB, 360, 100, 100, 100);
-	angleMode(DEGREES);
+	angleMode(RADIANS);
 
 	mic = new p5.AudioIn();
 	mic.amp(1.0);
 	// mic.start();
 	fft = new p5.FFT(0.25, 64);
-	fft.setInput(mic);
+	fft.setInput(sound);
 	spectex = createImage(8, 8);
 
 	scene['graphics'] = createGraphics(windowWidth * scene.pixScale, windowHeight * scene.pixScale, WEBGL);
-	scene['texture0'] = loadImage('AlienSpace2K.png', loaded);
-	scene['texture1'] = loadImage('AlienSpace2K_depth.png', loaded);
-	
-	describe('An abstract object with multi colors, made with Ray Marching technique in Fragment Shader, floating and rotating at center, reacting to audio input from microphone');
+
+	for (const button of controller.label) {
+		controller[button] = {
+			value: 0,
+			press: false
+		};
+	}
+
+	controller.l.value = 1.0;
+	controller.select.value = help ? 1.0 : 0.0;
+	controller.b.value = sound.isPlaying() ? 1.0 : 0.0;
 }
