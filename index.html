@@ -19,6 +19,18 @@
             border: none;
         }
     </style>
+    <script>
+        window.addEventListener('load', () => {
+            const iframe = document.querySelector('iframe');
+            const intervalId = setInterval(() => {
+                const consoleFrame = iframe.contentWindow.document.querySelector('.pjs-console');
+                if (consoleFrame) {
+                    consoleFrame.style.display = 'none';
+                    clearInterval(intervalId);
+                }
+            }, 100);
+        });
+    </script>
 </head>
 <body>
     <iframe src="https://openprocessing.org/sketch/2229208/embed/?plusEmbedHash=091ce040&userID=262670&plusEmbedFullscreen=true&show=sketch" allowfullscreen></iframe>
