@@ -6,12 +6,12 @@ function keyPressed() {
 	}
 
 	if (key == 'p' || key == 'P') {
-		if (!sound.isPlaying()) sound.loop();
-		else sound.stop();
+		// if (!sound.isPlaying()) sound.loop();
+		// else sound.stop();
 	}
 
 	if (key == 'h' || key == 'H') {
-		controller.select.value = 1.0 - controller.select.value;
+		// controller.select.value = 1.0 - controller.select.value;
 	}
 
 	if (key == 'q' || key == 'Q') {
