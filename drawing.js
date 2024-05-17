@@ -242,6 +242,6 @@ dynamicScaling(fps.minimum, fps.maximum);
 }
 
 function windowResized() {
-	resizeCanvas(windowWidth, windowWidth / 3);
+	resizeCanvas(windowWidth, windowHeight);
 	scene.graphics.resizeCanvas(width * scene.pixScale, height * scene.pixScale);
 }
