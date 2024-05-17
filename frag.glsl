@@ -631,7 +631,7 @@ void main() {
 
     vec4 col = vec4(1.0);
 		
-		uv.x += UV.x < 1.0 ? 1.0 : -2.0;
+		//uv.x += UV.x < 1.0 ? 1.0 : -2.0;
     
     // 3D setups //
     
@@ -650,21 +650,21 @@ void main() {
     uv.x = mix(uv.x, mod(uv.x, 2.0) - 1.0, stereoscopic * (1.0 - mode));
     uv.y = mix(uv.y, mod(uv.y, 1.0) - 0.5, stereoscopic * mode);
 
-    float zoom = UV.x < 1.0
+    float zoom = true
 			? 1.25 - 0.25 * ncos(time) + u_trigger.x / 8.0 * u_stick.y * u_stick.y * u_stick.y
 			: 0.8 - u_trigger.y / 2.5;
     
     vec3 rd = mix(
         normalize(vec3(uv.xy, zoom)),
         rotate(normalize(equiunwrap(scale(uv, vec2(1.0), vec2(2.0, 1.0))) * vec2(1.0, zoom).xxy), vec3(0.0, PI, 0.0)),
-        UV.x < 1.0 ? 0.0625 : 0.0625
+        0.0625
     );
     vec3
 				T = u_tiltView,
         R = u_freeView,
         M = u_freeMove;
 				
-		if (UV.x > 1.0) {
+		if (UV.x > 1.0 || false) {
 			ro.zy = vec2(1.0, -2.0);
 			T.xz = (R.xz = vec2(PI / 2.0, 0.0)).yy;
 		}
@@ -914,7 +914,7 @@ vec4 render(
         vec4 envTex = mix(
             texture2D(hdri, envMap.xy),
             texture2D(hdri, envMap.xy + vec2(0.0, 0.5)),
-            tiltAngle * float(UV.x < 1.0)
+            tiltAngle
         );
         
         // background environment texture
