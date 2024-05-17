@@ -97,25 +97,25 @@ function draw() {
 	freeMove.target.x += accelerate * ctrl.LS.y * sin(freeView.target.z) - ctrl.LS.x * cos(-freeView.target.z);
 
 	// keyboard mode
-	if (keyIsDown(65)) {
+	if (keyIsDown(65) || keyIsDown(LEFT_ARROW)) {
 		freeMove.target.x += accelerate * cos(-freeView.target.z);
 		freeMove.target.y += accelerate * sin(-freeView.target.z);
 		tiltView.target.y = -PI / 8.0;
 	}
-	if (keyIsDown(68)) {
+	if (keyIsDown(68) || keyIsDown(RIGHT_ARROW)) {
 		freeMove.target.x -= accelerate * cos(-freeView.target.z);
 		freeMove.target.y -= accelerate * sin(-freeView.target.z);
 		tiltView.target.y = PI / 8.0;
 	}
-	if (keyIsDown(65) && keyIsDown(68)) tiltView.target.y = 0.0;
+	if ((keyIsDown(65) || keyIsDown(LEFT_ARROW)) && (keyIsDown(68) || keyIsDown(RIGHT_ARROW))) tiltView.target.y = 0.0;
 
-	if (keyIsDown(83)) {
+	if (keyIsDown(83) || keyIsDown(DOWN_ARROW)) {
 		freeMove.target.z += accelerate * map(mouseY, 0, height, 1.0, -1.0) / 1.25;
 		freeMove.target.y += accelerate * cos(freeView.target.z);
 		freeMove.target.x += accelerate * sin(freeView.target.z);
 		tiltView.target.x = PI / 8.0;
 	}
-	if (keyIsDown(87)) {
+	if (keyIsDown(87) || keyIsDown(UP_ARROW)) {
 		freeMove.target.z -= accelerate * map(mouseY, 0, height, 1.0, -1.0) / 1.25;
 		freeMove.target.y -= accelerate * cos(freeView.target.z);
 		freeMove.target.x -= accelerate * sin(freeView.target.z);
@@ -228,7 +228,16 @@ the frame rate and computer render power
 
 FPS: ` + round(fps.current) + '\nScale: ' + round(100 * scene.pixScale) + '%', 16, 16);
 
-	dynamicScaling(fps.minimum, fps.maximum);
+noStroke();
+fill(255);
+textAlign(LEFT, CENTER);
+textSize(min(width, height) / 32);
+textWrap(WORD);
+text(`Welcome to the realm of 'Under Construction.'
+While we're busy crafting our digital empire, take a flight through this interactive cyber-wasteland. Feel the rush of exploration as we prepare to unveil our latest creation!`,
+width / 8, height / 16, width / 2, height);
+
+dynamicScaling(fps.minimum, fps.maximum);
 
 }
 
