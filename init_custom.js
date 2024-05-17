@@ -4,7 +4,7 @@ let
 	fft, spectex,
 	gamepad
 scene = {
-	pixScale: 0.25
+	pixScale: 0.125
 };
 
 const buttonIndexMapping = {
@@ -29,7 +29,7 @@ const buttonIndexMapping = {
 var
 	help = false,
 	data = {
-		loading: true,
+		loading: false,
 		counter: 0,
 		animate: 0
 	},
@@ -100,7 +100,7 @@ var
 
 function loaded() {
 	data.counter += 1;
-	data.loading = data.counter >= numOfAssets ? false : true;
+	// data.loading = data.counter >= numOfAssets ? false : true;
 	if (soundFX.isLoaded() && !soundFX.isPlaying()) soundFX.loop();
 }
 
