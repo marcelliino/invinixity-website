@@ -381,9 +381,9 @@ vec4 vivid(vec4 a, vec4 b) {
 
 //--------//
 
-const int MAX_STEPS = 256;
+const int MAX_STEPS = 128;
 const float MAX_DIST = 512.0;
-const float SURF_DIST = 1.0 / 64.0;
+const float SURF_DIST = 1.0 / 32.0;
 
 const float pdn = 1.0 / 16.0;
 
@@ -754,6 +754,7 @@ vec4 getDist(vec3 p) {
     
     float terrain = mix(0.0, 12.0, smoothstep(0.0, 1.25, noise(k.xz / 16.0) + noise(k.xz / 8.0 - 4.0) / 4.0));
     terrain *= max(smoothstep(-0.125, 0.8, length(p.xz / 128.0)), 0.25);
+    terrain *= smoothstep(4.0, 0.5, length(p / 128.0));
     
     vec4 o = vec4(material(ground.rgb, laser > 0.0 ? 4 : 5), k.y - terrain);
     o.a = abs(o.a);
@@ -780,6 +781,7 @@ vec4 getDist(vec3 p) {
     l.y = l.y + cos(l.x + sin(len-pow(nsin(len), 4.0))) + sin(t.y);
     
     float ripples =  noise(k.xz / 2.0 - (l + len) / 2.0) / 16.0;
+    ripples *= smoothstep(4.0, 0.5, length(p / 128.0));
     
     o.rgb = material(softLight(ground, vec4(0.1, 0.125, 0.0625, 1.0)).rgb, 2);
     o.a = ssub(terrain - k.yyyy, 2.0 - k.yyyy + ripples, 0.5).a / 1.6 + 0.125;
