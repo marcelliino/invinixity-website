@@ -660,14 +660,9 @@ void main() {
         0.0625
     );
     vec3
-				T = u_tiltView,
+	T = u_tiltView,
         R = u_freeView,
         M = u_freeMove;
-				
-		if (UV.x > 1.0 || false) {
-			ro.zy = vec2(1.0, -2.0);
-			T.xz = (R.xz = vec2(PI / 2.0, 0.0)).yy;
-		}
     
     ro -= vec3(sin(fract(time / 16.0) * TAU) / 4.0, -cos(fract(time / 8.0) * TAU) / 32.0, cos(fract(time / 2.0) * TAU) / 8.0);
     rd = rotate(rd, vec3(0.0, 0.0, sin(fract(time / 12.0) * TAU) / 48.0));
