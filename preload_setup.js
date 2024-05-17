@@ -10,7 +10,7 @@ function setup() {
 	sound = loadSound('a-gentle-breeze-wind-4-14681.mp3', loaded);
 	soundFX = loadSound('Gnimrofarret SoundFX.m4a', loaded);
 
-	createCanvas(windowWidth, windowWidth  / 3);
+	createCanvas(windowWidth, windowHeight);
 	pixelDensity(1);
 	noSmooth();
 	textFont('Courier New');
