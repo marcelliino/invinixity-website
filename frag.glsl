@@ -689,7 +689,7 @@ void main() {
     
     vec4 canvas = render(ro, rd, lp, lc, mr, IOR, false);
     
-    const int NUM_BOUNCES = 1;
+    const int NUM_BOUNCES = 2;
     
     for (int i = NUM_BOUNCES; i > 0; i--) {
         mx *= mr;
