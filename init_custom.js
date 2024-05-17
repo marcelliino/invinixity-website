@@ -4,7 +4,7 @@ let
 	fft, spectex,
 	gamepad
 scene = {
-	pixScale: 0.125
+	pixScale: 0.0625
 };
 
 const buttonIndexMapping = {
