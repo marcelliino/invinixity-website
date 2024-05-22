@@ -11,6 +11,10 @@ function setup() {
 	soundFX = loadSound('Gnimrofarret SoundFX.m4a', loaded);
 
 	createCanvas(windowWidth, windowHeight);
+	if (pixelDensity() > 1) {
+		scene.pixScale = 0.125;
+		dysc = false;
+	}
 	pixelDensity(1);
 	noSmooth();
 	textFont('Courier New');
