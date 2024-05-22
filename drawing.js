@@ -237,7 +237,7 @@ text(`Welcome to the realm of 'Under Construction.'
 While we're busy crafting our digital empire, take a flight through this interactive cyber-wasteland. Feel the rush of exploration as we prepare to unveil our latest creation!`,
 width / 8, height / 16, width / 2, height);
 
-dynamicScaling(fps.minimum, fps.maximum);
+if (dysc == true) dynamicScaling(fps.minimum, fps.maximum);
 
 }
 
