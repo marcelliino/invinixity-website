@@ -27,7 +27,7 @@ const buttonIndexMapping = {
 };
 
 var
-	dysc: true,
+	dysc = true,
 	help = false,
 	data = {
 		loading: false,
