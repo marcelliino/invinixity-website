@@ -3,7 +3,7 @@ function preload() {
 }
 
 function setup() {
-
+	
 	scene['hdri'] = loadImage('DiExposureSky4K.jpg', loaded);
 	scene['texture0'] = loadImage('coast_land_rocks_01_cnd_4k.png', loaded);
 	scene['texture1'] = loadImage('rocky_trail_02_cnd_4k.png', loaded);
@@ -18,6 +18,8 @@ function setup() {
 	pixelDensity(1);
 	noSmooth();
 	textFont('Courier New');
+
+	noCursor();
 
 	angleMode(RADIANS);
 
