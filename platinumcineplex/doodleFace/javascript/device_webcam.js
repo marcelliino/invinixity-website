@@ -46,6 +46,15 @@ inout.webcam.render = function () {
                         inout.webcam.stream.width, inout.webcam.stream.height,
                         COVER);
     
+    inout.webcam.canvas.fill(255);
+    inout.webcam.canvas.textFont('Quicksand');
+    inout.webcam.canvas.textSize(200);
+    inout.webcam.canvas.textAlign(CENTER, CENTER);
+    inout.webcam.canvas.text(
+                             inout.webcam.rotate,
+                             inout.webcam.canvas.width / 2,
+                             inout.webcam.canvas.height / 2);
+    
     push();
     
     imageMode(CENTER);
