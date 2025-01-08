@@ -105,28 +105,6 @@ function loaded() {
 //	if (soundFX.isLoaded() && !soundFX.isPlaying()) soundFX.loop();
 }
 
-// function animateData(activeValues, targetValues, smoothFactor) {
-// 	return activeValues * (1 - smoothFactor) + targetValues * smoothFactor;
-// }
-
-// function dynamicScaling(minFPS, maxFPS) {
-
-// 	fps.current = animateData(fps.current, frameRate(), 0.25);
-
-// 	if (fps.current < minFPS && scene.pixScale > 0.04398046511104) {
-// 		scene.pixScale = max(scene.pixScale / 1.25, 0.04398046511104);
-// 		scene.graphics.resizeCanvas(width * scene.pixScale, height * scene.pixScale);
-// 		// console.log('down', fps.numstep);
-// 	} else if (fps.current > maxFPS && scene.pixScale < 1 && frameCount % 8 == 0) {
-// 		scene.pixScale = min(scene.pixScale / 0.8, 1);
-// 		scene.graphics.resizeCanvas(width * scene.pixScale, height * scene.pixScale);
-// 		// console.log('up', fps.numstep);
-// 	} else {
-// 		// console.log('idle');
-// 	}
-
-// }
-
 function animateData(activeValues, targetValues, smoothFactor) {
     return activeValues * (1 - smoothFactor) + targetValues * smoothFactor;
 }
