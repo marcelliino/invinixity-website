@@ -19,6 +19,7 @@ let scene = {
             canvas: null,
             render: null,
             resize: null,
+            rotate: 'portrait',
             settings: {
                 video: {
 //                    width: { ideal: 1280 },

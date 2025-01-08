@@ -23,6 +23,7 @@ inout.webcam.presetup = function () {
 
 inout.webcam.initiate = function () {
     if (inout.webcam.stream) inout.webcam.stream.remove();
+    
 //    inout.webcam.settings.video.deviceId = inout.webcam.device.id;
     inout.webcam.settings.video.facingMode = 'user';
 
@@ -60,5 +61,10 @@ inout.webcam.render = function () {
 }
 
 inout.webcam.resize = function (w, h) {
+    if (inout.webcam.rotate != deviceOrientation) {
+        inout.webcam.initiate();
+        inout.webcam.rotate = deviceOrientation;
+    }
+    
     inout.webcam.canvas.resizeCanvas(w, h);
 }
