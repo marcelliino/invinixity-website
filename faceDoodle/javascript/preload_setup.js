@@ -9,7 +9,7 @@ function setup() {
     
     angleMode(DEGREES);
     
-    inout.webcam.initiate();
+    inout.webcam.presetup();
 }
 
 file.fetched = function () {
