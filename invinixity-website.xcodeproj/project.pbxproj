@@ -17,9 +17,9 @@
 			path = home;
 			sourceTree = "<group>";
 		};
-		1DA011E42D2EA0FE000E9A68 /* doodleFace */ = {
+		1DA011F22D2EEEAA000E9A68 /* platinumcineplex */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = doodleFace;
+			path = platinumcineplex;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -28,7 +28,7 @@
 		1DA011872D2E8F16000E9A68 = {
 			isa = PBXGroup;
 			children = (
-				1DA011E42D2EA0FE000E9A68 /* doodleFace */,
+				1DA011F22D2EEEAA000E9A68 /* platinumcineplex */,
 				1DA011962D2E8F6C000E9A68 /* index.html */,
 				1DA0119B2D2E8F6C000E9A68 /* style.css */,
 				1DA011D02D2E9E28000E9A68 /* home */,
