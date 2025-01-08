@@ -5,6 +5,7 @@ function preload() {
 function setup() {
     
     createCanvas(windowWidth, windowHeight, WEBGL);
+    pixelDensity(1);
     smooth();
     
     angleMode(DEGREES);
