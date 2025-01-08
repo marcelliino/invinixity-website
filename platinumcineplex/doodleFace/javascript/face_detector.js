@@ -10,16 +10,16 @@ mapper.initiate = function () {
     console.log('Mapper settings:', mapper.settings);
 }
 
-mapper.face.draw = function () {
+mapper.face.draw = function (target_canvas) {
     mapper.face.data.forEach(face => {
-        beginShape(TRIANGLES);
+        target_canvas.beginShape(TRIANGLES);
         mapper.face.tris.forEach(triad => {
             triad.forEach(index => {
                 let pt = face.keypoints[index],
                     uv = mapper.face.uvst[index];
-                vertex(pt.x, pt.y, -pt.z, uv[0], uv[1]);
+                target_canvas.vertex(pt.x, pt.y, -pt.z, uv[0], uv[1]);
             });
         });
-        endShape();
+        target_canvas.endShape();
     });
 }

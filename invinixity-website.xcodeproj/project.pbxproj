@@ -9,6 +9,13 @@
 /* Begin PBXFileReference section */
 		1DA011962D2E8F6C000E9A68 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		1DA0119B2D2E8F6C000E9A68 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		1DA012022D2F190B000E9A68 /* android-chrome-192x192.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "android-chrome-192x192.png"; sourceTree = "<group>"; };
+		1DA012032D2F190B000E9A68 /* android-chrome-512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "android-chrome-512x512.png"; sourceTree = "<group>"; };
+		1DA012042D2F190B000E9A68 /* apple-touch-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon.png"; sourceTree = "<group>"; };
+		1DA012052D2F190B000E9A68 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
+		1DA012062D2F190B000E9A68 /* favicon-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favicon-16x16.png"; sourceTree = "<group>"; };
+		1DA012072D2F190B000E9A68 /* favicon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favicon-32x32.png"; sourceTree = "<group>"; };
+		1DA012082D2F190B000E9A68 /* site.webmanifest */ = {isa = PBXFileReference; lastKnownFileType = text; path = site.webmanifest; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,6 +35,13 @@
 		1DA011872D2E8F16000E9A68 = {
 			isa = PBXGroup;
 			children = (
+				1DA012022D2F190B000E9A68 /* android-chrome-192x192.png */,
+				1DA012032D2F190B000E9A68 /* android-chrome-512x512.png */,
+				1DA012042D2F190B000E9A68 /* apple-touch-icon.png */,
+				1DA012052D2F190B000E9A68 /* favicon.ico */,
+				1DA012062D2F190B000E9A68 /* favicon-16x16.png */,
+				1DA012072D2F190B000E9A68 /* favicon-32x32.png */,
+				1DA012082D2F190B000E9A68 /* site.webmanifest */,
 				1DA011F22D2EEEAA000E9A68 /* platinumcineplex */,
 				1DA011962D2E8F6C000E9A68 /* index.html */,
 				1DA0119B2D2E8F6C000E9A68 /* style.css */,

@@ -59,8 +59,8 @@ let scene = {
     },
     file = {
         content: {
-            image: [],
-            sound: []
+            image: {},
+            sound: {}
         },
         fetched: null,
         loading: true,

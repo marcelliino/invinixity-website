@@ -4,13 +4,18 @@ function preload() {
 
 function setup() {
     
-    createCanvas(windowWidth, windowHeight, WEBGL);
+    createCanvas(windowWidth, windowHeight);
     pixelDensity(1);
     smooth();
     
     angleMode(DEGREES);
     
     inout.webcam.presetup();
+    scene.graphic = createGraphics(width, height, WEBGL);
+    
+    for (let n = 0; n < 1; n++) {
+        file.content.image[`mask${n}`] = loadImage(`resource/face/mask${n}.png`, file.fetched);
+    }
 }
 
 file.fetched = function () {

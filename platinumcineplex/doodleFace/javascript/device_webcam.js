@@ -28,7 +28,7 @@ inout.webcam.initiate = function () {
     inout.webcam.settings.video.facingMode = 'user';
 
     inout.webcam.stream = createCapture(inout.webcam.settings, () => {
-        inout.webcam.canvas = createGraphics(windowWidth, windowHeight);
+        inout.webcam.canvas = createGraphics(width, height);
         mapper.initiate();
         inout.webcam.stream.hide();
         inout.webcam.prepared = true;
@@ -38,7 +38,8 @@ inout.webcam.initiate = function () {
 }
 
 
-inout.webcam.render = function () {
+inout.webcam.render = function (target_canvas) {
+    inout.webcam.canvas.background(0);
     inout.webcam.canvas.image(inout.webcam.stream,
                         0, 0,
                         width, height,
@@ -46,18 +47,25 @@ inout.webcam.render = function () {
                         inout.webcam.stream.width, inout.webcam.stream.height,
                         COVER);
     
-    push();
+    target_canvas.background(0);
+    target_canvas.ortho();
     
-    imageMode(CENTER);
-    image(inout.webcam.canvas, 0, 0);
+    target_canvas.push();
     
-    translate(-inout.webcam.canvas.width * 0.5, -inout.webcam.canvas.height * 0.5, 128);
-    noStroke();
-    fill(255, 125);
-    textureMode(NORMAL);
-    mapper.face.draw();
+    target_canvas.imageMode(CENTER);
+    target_canvas.image(inout.webcam.canvas, 0, 0);
     
-    pop();
+    target_canvas.translate(-inout.webcam.canvas.width * 0.5, -inout.webcam.canvas.height * 0.5, 128);
+    
+    target_canvas.noStroke();
+    target_canvas.noFill();
+    
+    target_canvas.textureMode(NORMAL);
+    if (file.content.image.mask0) target_canvas.texture(file.content.image.mask0);
+    
+    mapper.face.draw(target_canvas);
+    
+    target_canvas.pop();
 }
 
 inout.webcam.resize = function (w, h) {
