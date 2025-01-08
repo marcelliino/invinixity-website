@@ -51,7 +51,7 @@ inout.webcam.render = function () {
     inout.webcam.canvas.textSize(200);
     inout.webcam.canvas.textAlign(CENTER, CENTER);
     inout.webcam.canvas.text(
-                             inout.webcam.rotate,
+                             deviceOrientation,
                              inout.webcam.canvas.width / 2,
                              inout.webcam.canvas.height / 2);
     
