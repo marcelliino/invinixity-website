@@ -21,9 +21,9 @@ let scene = {
             resize: null,
             settings: {
                 video: {
-                    width: { ideal: 1920 },
-                    height: { ideal: 1080 },
-                    resizeMode: 'crop-and-scale',
+//                    width: { ideal: 1280 },
+//                    height: { ideal: 720 },
+//                    resizeMode: 'crop-and-scale',
                     framerate: {
                         ideal: 30,
                         min: 15,
