@@ -6,10 +6,44 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXFileReference section */
+		1DA011962D2E8F6C000E9A68 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1DA0119B2D2E8F6C000E9A68 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1DA011A62D2E99D4000E9A68 /* shader */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = shader;
+			sourceTree = "<group>";
+		};
+		1DA011AC2D2E99DB000E9A68 /* javascript */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = javascript;
+			sourceTree = "<group>";
+		};
+		1DA011B02D2E99DE000E9A68 /* image */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = image;
+			sourceTree = "<group>";
+		};
+		1DA011B32D2E99E2000E9A68 /* sound */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = sound;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXGroup section */
 		1DA011872D2E8F16000E9A68 = {
 			isa = PBXGroup;
 			children = (
+				1DA011B32D2E99E2000E9A68 /* sound */,
+				1DA011B02D2E99DE000E9A68 /* image */,
+				1DA011A62D2E99D4000E9A68 /* shader */,
+				1DA011962D2E8F6C000E9A68 /* index.html */,
+				1DA0119B2D2E8F6C000E9A68 /* style.css */,
+				1DA011AC2D2E99DB000E9A68 /* javascript */,
 			);
 			sourceTree = "<group>";
 		};

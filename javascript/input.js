@@ -42,4 +42,5 @@ function keyPressed() {
 function mousePressed() {
 	fps.minimum = 30;
 	fps.maximum = 60;
+    if (soundFX.isLoaded() && !soundFX.isPlaying()) soundFX.loop();
 }

@@ -230,12 +230,20 @@ FPS: ` + round(fps.current) + '\nScale: ' + round(100 * scene.pixScale) + '%', 1
 
 noStroke();
 fill(255);
-textAlign(LEFT, CENTER);
+textAlign(CENTER, CENTER);
 textSize(min(width, height) / 32);
 textWrap(WORD);
-text(`Welcome to the realm of 'Under Construction.'
+/*text(`Welcome to the realm of 'Under Construction.'
 While we're busy crafting our digital empire, take a flight through this interactive cyber-wasteland. Feel the rush of exploration as we prepare to unveil our latest creation!`,
-width / 8, height / 16, width / 2, height);
+     width / 8,
+     height / 16,
+     width / 2,
+     height);*/
+text('www.invinixity.com\nis currently under reconstruction',
+     width / 8,
+     height / 16,
+     width / 1.25,
+     height);
 
 if (dysc == true) dynamicScaling(fps.minimum, fps.maximum);
 

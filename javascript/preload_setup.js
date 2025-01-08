@@ -1,14 +1,14 @@
 function preload() {
-	scene['render3D'] = loadShader('vert.glsl', 'frag.glsl');
+	scene['render3D'] = loadShader('shader/vert.glsl', 'shader/frag.glsl');
 }
 
 function setup() {
 	
-	scene['hdri'] = loadImage('DiExposureSky4K.jpg', loaded);
-	scene['texture0'] = loadImage('coast_land_rocks_01_cnd_4k.png', loaded);
-	scene['texture1'] = loadImage('rocky_trail_02_cnd_4k.png', loaded);
-	sound = loadSound('a-gentle-breeze-wind-4-14681.mp3', loaded);
-	soundFX = loadSound('Gnimrofarret SoundFX.m4a', loaded);
+	scene['hdri'] = loadImage('image/DiExposureSky4K.jpg', loaded);
+	scene['texture0'] = loadImage('image/coast_land_rocks_01_cnd_4k.png', loaded);
+	scene['texture1'] = loadImage('image/rocky_trail_02_cnd_4k.png', loaded);
+	sound = loadSound('sound/a-gentle-breeze-wind-4-14681.mp3', loaded);
+	soundFX = loadSound('sound/Gnimrofarret SoundFX.m4a', loaded);
 
 	createCanvas(windowWidth, windowHeight);
 	if (pixelDensity() > 1) {
@@ -19,7 +19,7 @@ function setup() {
 	noSmooth();
 	textFont('Courier New');
 
-	noCursor();
+//	noCursor();
 
 	angleMode(RADIANS);
 
