@@ -8,6 +8,7 @@ mapper.initiate = function () {
     mapper.face.uvst = mapper.face.mesh.getUVCoords();
     
     console.log('Mapper settings:', mapper.settings);
+    console.log('Mapper data', mapper.face.data);
 }
 
 mapper.face.draw = function (target_canvas) {

@@ -16,10 +16,19 @@ let scene = {
         webcam: {
             presetup: null,
             initiate: null,
+            snapshot: {
+                push: null,
+                pull: null
+            },
+            captured: false,
+            button: {
+                position: {x: 0.5, y: 0.8},
+                radius: 0.2,
+                tapped: false
+            },
             canvas: null,
             render: null,
             resize: null,
-            rotate: 'portrait',
             settings: {
                 video: {
 //                    width: { ideal: 1280 },

@@ -3,8 +3,6 @@ function draw() {
     
     if(inout.webcam.prepared) inout.webcam.render(scene.graphic);
     
-    image(scene.graphic, 0, 0);
-    
 }
 
 function windowResized() {
