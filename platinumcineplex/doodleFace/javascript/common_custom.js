@@ -30,11 +30,11 @@ let scene = {
             canvas: null,
             render: null,
             resize: null,
-            settings: {
+            /*settings: {
                 video: {
-//                    width: { ideal: 1280 },
-//                    height: { ideal: 720 },
-//                    resizeMode: 'crop-and-scale',
+                   width: { ideal: 1280 },
+                   height: { ideal: 720 },
+                   resizeMode: 'crop-and-scale',
                     framerate: {
                         ideal: 30,
                         min: 15,
@@ -42,7 +42,7 @@ let scene = {
                     }
                 },
                 audio: false
-            },
+            },*/
             prepared: false,
             stream: null,
             device: {

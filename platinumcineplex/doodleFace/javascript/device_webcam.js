@@ -24,10 +24,12 @@ inout.webcam.presetup = function () {
 inout.webcam.initiate = function () {
     if (inout.webcam.stream) inout.webcam.stream.remove();
     
-//    inout.webcam.settings.video.deviceId = inout.webcam.device.id;
+    /*
+    inout.webcam.settings.video.deviceId = inout.webcam.device.id;
     inout.webcam.settings.video.facingMode = 'user';
+    */
 
-    inout.webcam.stream = createCapture(inout.webcam.settings, () => {
+    inout.webcam.stream = createCapture(VIDEO, {flipped: true}, () => {
         inout.webcam.canvas = createGraphics(width, height);
         mapper.initiate();
         inout.webcam.stream.hide();
@@ -48,7 +50,7 @@ inout.webcam.render = function (target_canvas) {
                         0, 0,
                         inout.webcam.stream.width, inout.webcam.stream.height,
                         COVER);
-    
+
     inout.webcam.timer.time = millis() / 1000;
     
     target_canvas.background(0);
@@ -69,7 +71,7 @@ inout.webcam.render = function (target_canvas) {
     
     if (inout.webcam.captured && inout.webcam.timer.end()){
         mapper.face.draw(target_canvas);
-        // mapper.face.mesh.detectStop();
+        mapper.face.mesh.detectStop();
     }
     
     target_canvas.pop();
@@ -140,6 +142,7 @@ inout.webcam.snapshot.pull = function () {
     
     if (tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height) * 0.5) {
         inout.webcam.stream.play();
+        mapper.initiate();
         inout.webcam.timer.start();
         inout.webcam.captured = true;
         inout.webcam.button.tapped = false;
