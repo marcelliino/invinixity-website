@@ -8,8 +8,6 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     pixelDensity(1);
     smooth();
-    
-    angleMode(DEGREES);
 
     textFont(file.content.font);
     

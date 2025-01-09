@@ -86,6 +86,10 @@ inout.webcam.render = function (target_canvas) {
     noStroke();
     fill(255, opacity);
     textAlign(CENTER, CENTER);
+    textFont('Quicksand');
+    textStyle(BOLD);
+
+    let S = sin(millis() / 1000 * PI) * 8;
     
     let pos = inout.webcam.button.position,
         rad = inout.webcam.button.radius;
@@ -100,18 +104,15 @@ inout.webcam.render = function (target_canvas) {
         if (inout.webcam.captured) {
             inout.webcam.stream.stop();
 
-            textSize(min(width, height) * 0.125);
             noStroke();
-            fill(55);
-            textFont('Quicksand');
-            textStyle(NORMAL);
-            text('↺', pos.x * width, pos.y * height);
+            fill(255);
+            textSize(min(width, height) * 0.0625 + S);
+            text('NEXT>', width * 0.75, pos.y * height);
         }
     } else {
+        S = cos(inout.webcam.timer.counterDown * TAU) * 16;
         fill(255);
-        textSize(min(width, height) * 0.25);
-        textFont('Quicksand');
-        textStyle(BOLD);
+        textSize(min(width, height) * 0.25 + S);
         text(floor(inout.webcam.timer.counterDown + 0.5), width * 0.5, height * 0.5);
     }
     
@@ -141,7 +142,6 @@ inout.webcam.snapshot.pull = function () {
         inout.webcam.stream.play();
         inout.webcam.timer.start();
         inout.webcam.captured = true;
-    } else {
         inout.webcam.button.tapped = false;
     }
 }
