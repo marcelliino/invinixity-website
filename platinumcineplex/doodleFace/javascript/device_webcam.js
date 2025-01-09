@@ -34,6 +34,8 @@ inout.webcam.initiate = function () {
         inout.webcam.prepared = true;
     });
 
+    inout.webcam.timer = new Timer(3);
+
     console.log('Webcam settings:', inout.webcam.settings);
 }
 
@@ -46,6 +48,8 @@ inout.webcam.render = function (target_canvas) {
                         0, 0,
                         inout.webcam.stream.width, inout.webcam.stream.height,
                         COVER);
+    
+    inout.webcam.timer.time = millis() / 1000;
     
     target_canvas.background(0);
     target_canvas.ortho();
@@ -63,9 +67,9 @@ inout.webcam.render = function (target_canvas) {
     target_canvas.textureMode(NORMAL);
     if (file.content.image.mask0) target_canvas.texture(file.content.image.mask0);
     
-    if (inout.webcam.captured){
+    if (inout.webcam.captured && inout.webcam.timer.end()){
         mapper.face.draw(target_canvas);
-        mapper.face.mesh.detectStop();
+        // mapper.face.mesh.detectStop();
     }
     
     target_canvas.pop();
@@ -81,25 +85,34 @@ inout.webcam.render = function (target_canvas) {
     
     noStroke();
     fill(255, opacity);
+    textAlign(CENTER, CENTER);
     
     let pos = inout.webcam.button.position,
         rad = inout.webcam.button.radius;
-    if (!inout.webcam.captured) {
+    
+    if (inout.webcam.timer.end()){
         circle(pos.x * width, pos.y * height, rad * min(width, height) * (tap ? 0.64 : 0.8));
         noFill();
         stroke(255, opacity);
         strokeWeight(rad * min(width, height) * 0.125);
         circle(pos.x * width, pos.y * height, rad * min(width, height));
-    } else {
-        textSize(min(width, height) * 0.0625);
-        textAlign(CENTER, CENTER);
-        let label = 'retake',
-            bound = file.content.font.textBounds(label, pos.x * width, pos.y * height);
         
+        if (inout.webcam.captured) {
+            inout.webcam.stream.stop();
+
+            textSize(min(width, height) * 0.125);
+            noStroke();
+            fill(55);
+            textFont('Quicksand');
+            textStyle(NORMAL);
+            text('↺', pos.x * width, pos.y * height);
+        }
+    } else {
         fill(255);
-        rect(bound.x - 32, bound.y - 32, bound.w + 64, bound.h + 64, 64);
-        fill(25);
-        text(label, pos.x * width, pos.y * height);
+        textSize(min(width, height) * 0.25);
+        textFont('Quicksand');
+        textStyle(BOLD);
+        text(floor(inout.webcam.timer.counterDown + 0.5), width * 0.5, height * 0.5);
     }
     
     pop();
@@ -125,7 +138,8 @@ inout.webcam.snapshot.pull = function () {
         tap = inout.webcam.button.tapped;
     
     if (tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height) * 0.5) {
-        inout.webcam.stream.stop();
+        inout.webcam.stream.play();
+        inout.webcam.timer.start();
         inout.webcam.captured = true;
     } else {
         inout.webcam.button.tapped = false;

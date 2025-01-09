@@ -26,6 +26,7 @@ let scene = {
                 radius: 0.2,
                 tapped: false
             },
+            timer: null,
             canvas: null,
             render: null,
             resize: null,

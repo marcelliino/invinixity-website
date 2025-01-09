@@ -10,11 +10,11 @@ function setup() {
     smooth();
     
     angleMode(DEGREES);
+
+    textFont(file.content.font);
     
     inout.webcam.presetup();
     scene.graphic = createGraphics(width, height, WEBGL);
-    
-    textFont(file.content.font);
     
     for (let n = 0; n < 1; n++) {
         file.content.image[`mask${n}`] = loadImage(`resource/face/mask${n}.png`, file.fetched);
