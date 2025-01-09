@@ -1,5 +1,6 @@
 function preload() {
     mapper.presetup(mapper.settings);
+    file.content.font = loadFont('resource/font/Quicksand-VariableFont_wght.ttf');
 }
 
 function setup() {
@@ -12,6 +13,8 @@ function setup() {
     
     inout.webcam.presetup();
     scene.graphic = createGraphics(width, height, WEBGL);
+    
+    textFont(file.content.font);
     
     for (let n = 0; n < 1; n++) {
         file.content.image[`mask${n}`] = loadImage(`resource/face/mask${n}.png`, file.fetched);

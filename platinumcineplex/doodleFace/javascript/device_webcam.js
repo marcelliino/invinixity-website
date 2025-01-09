@@ -90,6 +90,16 @@ inout.webcam.render = function (target_canvas) {
         stroke(255, opacity);
         strokeWeight(rad * min(width, height) * 0.125);
         circle(pos.x * width, pos.y * height, rad * min(width, height));
+    } else {
+        textSize(min(width, height) * 0.0625);
+        textAlign(CENTER, CENTER);
+        let label = 'retake',
+            bound = file.content.font.textBounds(label, pos.x * width, pos.y * height);
+        
+        fill(255);
+        rect(bound.x - 32, bound.y - 32, bound.w + 64, bound.h + 64, 64);
+        fill(25);
+        text(label, pos.x * width, pos.y * height);
     }
     
     pop();
@@ -104,7 +114,7 @@ inout.webcam.snapshot.push = function () {
         rad = inout.webcam.button.radius,
         tap = inout.webcam.button.tapped;
     
-    if (!tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height)) {
+    if (!tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height) * 0.5) {
         inout.webcam.button.tapped = true;
     }
 }
@@ -114,7 +124,7 @@ inout.webcam.snapshot.pull = function () {
         rad = inout.webcam.button.radius,
         tap = inout.webcam.button.tapped;
     
-    if (tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height)) {
+    if (tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height) * 0.5) {
         inout.webcam.stream.stop();
         inout.webcam.captured = true;
     } else {
