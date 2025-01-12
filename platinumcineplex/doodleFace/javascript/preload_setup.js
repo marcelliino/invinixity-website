@@ -14,7 +14,8 @@ function setup() {
     inout.webcam.presetup();
     scene.graphic = createGraphics(width, height, WEBGL);
     
-    for (let n = 0; n < 1; n++) {
+    // load images
+    for (let n = 0; n < file.catalog.image.length; n++) {
         file.content.image[`mask${n}`] = loadImage(`resource/face/mask${n}.png`, file.fetched);
     }
 }
