@@ -8,18 +8,36 @@ function setup() {
     pixelDensity(1);
     smooth();
 
+    console.log("Initializing...");
+
+    file.loading = true;
+    file.counter = 0;
+
+    const loadTasks = [];
+
+    file.content = file.scanner(file.catalog, path => {
+        const loadTask = file.extract(path).then(resource => {
+            if (resource) {
+                file.counter++;
+                console.log(file.counter + "/" + file.catalog.length)
+            }
+            return resource;
+        });
+        loadTasks.push(loadTask);
+    });
+    
+    Promise.all(loadTasks)
+        .then(() => {
+            console.log("All resources loaded!");
+            file.loading = false;
+        })
+        .catch(error => {
+            console.error("Error loading some resources:", error);
+        });
+
     // textFont(file.content.font);
     
     inout.webcam.presetup();
     scene.graphic = createGraphics(width, height, WEBGL);
     
-    // load images
-    // for (let n = 0; n < file.catalog.image.length; n++) {
-    //     file.content.image[`mask${n}`] = loadImage(`resource/face/mask${n}.png`, file.fetched);
-    // }
-}
-
-file.fetched = function () {
-    file.counter += 1;
-    file.loading = file.counter >= NUMBER_OF_ASSET ? false : true;
 }
