@@ -1,6 +1,6 @@
 {
-    "name": "invinixity",
-    "short_name": "|ɪnd.ˈfi.nɪ.si.θi|",
+    "name": "Platinum Cineplex - Camera",
+    "short_name": "Platinum Camera",
     "icons": [
         {
             "src": "/icon/android-chrome-192x192.png",
@@ -15,7 +15,7 @@
     ],
     "theme_color": "#1a1a1a",
     "background_color": "#000000",
-    "display": "fullscreen",
-    "start_url": "/",
-    "scope": "/"
+    "display": "standalone",
+    "start_url": "./",
+    "scope": "./"
 }
