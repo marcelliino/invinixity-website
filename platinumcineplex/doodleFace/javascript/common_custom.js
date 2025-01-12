@@ -127,8 +127,8 @@ file.extract = async function (path) {
     try {
         console.log(`Loading resource: ${path}`);
 
-        if (path.endsWith('.png')) return await loadImage(path, file.fetched);
-        if (path.endsWith('.ttf')) return await loadFont(path, file.fetched);
+        if (path.endsWith('.png')) return loadImage(path, file.fetched);
+        if (path.endsWith('.ttf')) return loadFont(path, file.fetched);
         console.warn(`Unsupported file type: ${path}`);
         return null;
     } catch (error) {
