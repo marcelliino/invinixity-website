@@ -67,7 +67,8 @@ inout.webcam.render = function (target_canvas) {
     target_canvas.noFill();
     
     target_canvas.textureMode(NORMAL);
-    if (file.content.image.mask0) target_canvas.texture(file.content.image.mask0);
+    // if (file.content.image.mask0) target_canvas.texture(file.content.image.mask0);
+    target_canvas.fill(255);
     
     if (inout.webcam.captured && inout.webcam.timer.end()){
         mapper.face.draw(target_canvas);
