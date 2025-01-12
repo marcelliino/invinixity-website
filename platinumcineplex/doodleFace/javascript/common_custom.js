@@ -1,13 +1,13 @@
 let scene = {
-        graphic: null,
-        runtime: 0.0,
-        frameps: {
-            numstep: 0,
-            current: 0,
-            minimum: 12,
-            maximum: 30
-        }
-    },
+    graphic: null,
+    runtime: 0.0,
+    frameps: {
+        numstep: 0,
+        current: 0,
+        minimum: 12,
+        maximum: 30
+    }
+},
     inout = {
         webcam: {
             presetup: null,
@@ -18,7 +18,7 @@ let scene = {
             },
             captured: false,
             button: {
-                position: {x: 0.5, y: 0.8},
+                position: { x: 0.5, y: 0.8 },
                 radius: 0.2,
                 tapped: false
             },
@@ -88,6 +88,7 @@ let scene = {
         content: {},
         scanner: null,
         extract: null,
+        fetched: null,
         loading: true,
         counter: 0,
         animate: 0
@@ -125,9 +126,9 @@ file.scanner = function (paths, loadFile) {
 file.extract = async function (path) {
     try {
         console.log(`Loading resource: ${path}`);
-        
-        if (path.endsWith('.png')) return await loadImage(path);
-        if (path.endsWith('.ttf')) return await loadFont(path);
+
+        if (path.endsWith('.png')) return await loadImage(path, file.fetched);
+        if (path.endsWith('.ttf')) return await loadFont(path, file.fetched);
         console.warn(`Unsupported file type: ${path}`);
         return null;
     } catch (error) {
@@ -135,3 +136,9 @@ file.extract = async function (path) {
         return null;
     }
 };
+
+file.fetched = function () {
+    file.counter++; // Increment file counter
+    console.log(`Loaded: ${file.counter}/${file.catalog.length}`);
+    file.loading = !(file.counter === file.catalog.length);
+}

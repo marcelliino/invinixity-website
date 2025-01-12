@@ -12,28 +12,18 @@ function setup() {
 
     file.loading = true;
     file.counter = 0;
-
-    const loadTasks = [];
+    file.content = {};
 
     file.content = file.scanner(file.catalog, path => {
-        const loadTask = file.extract(path).then(resource => {
-            if (resource) {
-                file.counter++;
-                console.log(file.counter + "/" + file.catalog.length)
-            }
-            return resource;
-        });
-        loadTasks.push(loadTask);
+        // Load each file and dynamically update progress
+        file.extract(path)
+            .then(resource => {
+                
+            })
+            .catch(error => {
+                console.error(`Failed to load: ${path}`, error);
+            });
     });
-    
-    Promise.all(loadTasks)
-        .then(() => {
-            console.log("All resources loaded!");
-            file.loading = false;
-        })
-        .catch(error => {
-            console.error("Error loading some resources:", error);
-        });
 
     // textFont(file.content.font);
     
