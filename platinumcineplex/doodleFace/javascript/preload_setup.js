@@ -1,4 +1,5 @@
 function preload() {
+    scene.logo = loadImage('PlatinumCineplexLogo.png');
     mapper.presetup(mapper.settings);
 }
 
@@ -14,16 +15,7 @@ function setup() {
     file.counter = 0;
     file.content = {};
 
-    file.content = file.scanner(file.catalog, path => {
-        // Load each file and dynamically update progress
-        file.extract(path)
-            .then(resource => {
-                
-            })
-            .catch(error => {
-                console.error(`Failed to load: ${path}`, error);
-            });
-    });
+    file.content = file.scanner(file.catalog, file.extract);
 
     // textFont(file.content.font);
     

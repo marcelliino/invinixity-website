@@ -67,8 +67,7 @@ inout.webcam.render = function (target_canvas) {
     target_canvas.noFill();
     
     target_canvas.textureMode(NORMAL);
-    // if (file.content.image.mask0) target_canvas.texture(file.content.image.mask0);
-    target_canvas.fill(255);
+    if (file.content.face.mask[0]) target_canvas.texture(file.content.face.mask[0]);
     
     if (inout.webcam.captured && inout.webcam.timer.end()){
         mapper.face.draw(target_canvas);
@@ -143,7 +142,7 @@ inout.webcam.snapshot.pull = function () {
     
     if (tap && dist(mouseX, mouseY, pos.x * width, pos.y * height) <= rad * min(width, height) * 0.5) {
         inout.webcam.stream.play();
-        mapper.initiate();
+        if (!mapper.face.detected) mapper.initiate();
         inout.webcam.timer.start();
         inout.webcam.captured = true;
         inout.webcam.button.tapped = false;

@@ -1,4 +1,5 @@
 let scene = {
+    logo: null,
     graphic: null,
     runtime: 0.0,
     frameps: {
@@ -99,6 +100,8 @@ file.scanner = function (paths, loadFile) {
 
     paths.forEach(path => {
         const parts = path.split('/'); // Split path into parts
+
+        if (parts[0] === 'resource') parts.shift();
         let current = structure;
 
         // Traverse directories up to the second-to-last part
@@ -120,21 +123,19 @@ file.scanner = function (paths, loadFile) {
         }
     });
 
+    console.log('struct:', structure);
+
     return structure;
 }
 
-file.extract = async function (path) {
-    try {
-        console.log(`Loading resource: ${path}`);
+file.extract = function (path) {
+    console.log(`Loading resource: ${path}`);
 
         if (path.endsWith('.png')) return loadImage(path, file.fetched);
         if (path.endsWith('.ttf')) return loadFont(path, file.fetched);
+
         console.warn(`Unsupported file type: ${path}`);
         return null;
-    } catch (error) {
-        console.error(`Error loading resource: ${path}`, error);
-        return null;
-    }
 };
 
 file.fetched = function () {

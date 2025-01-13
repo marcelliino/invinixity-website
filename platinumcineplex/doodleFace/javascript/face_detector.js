@@ -4,6 +4,7 @@ mapper.presetup = function (config) {
 
 mapper.initiate = function () {
     mapper.face.mesh.detectStart(inout.webcam.canvas, (results) => mapper.face.data = results);
+    mapper.face.detected = true;
     mapper.face.tris = mapper.face.mesh.getTriangles();
     mapper.face.uvst = mapper.face.mesh.getUVCoords();
     
