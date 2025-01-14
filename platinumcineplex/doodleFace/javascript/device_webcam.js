@@ -9,7 +9,7 @@ class Webcam {
         this.stream = null;
         this.canvas = null;
         this.button = {
-            position: { x: 0.5, y: 0.8 }, radius: 0.125, tapped: false,
+            position: { x: 0.5, y: 0.8 }, radius: 0.2, tapped: false,
             timer: new Timer(3),
             push: this.push.bind(this),
             pull: this.pull.bind(this),
