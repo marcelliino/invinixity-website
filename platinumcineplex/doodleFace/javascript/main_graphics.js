@@ -1,7 +1,7 @@
 function draw() {
     background(86, 19, 187);
     let minWin = min(width, height);
-    
+
     if (file.loading) {
         let progress = file.counter / file.catalog.length;
         let barWidth = width * 0.6;
@@ -9,7 +9,7 @@ function draw() {
         push();
         tint(251, 128, 0);
         imageMode(CENTER);
-        image(scene.logo, width / 2, height / 2 - minWin / 4, minWin / 2, minWin / 2);
+        if (file.content.logo) image(file.content.logo, width / 2, height / 2 - minWin / 4, minWin / 2, minWin / 2);
         pop();
 
         noFill();
@@ -21,11 +21,9 @@ function draw() {
         rect((width - barWidth) / 2, height / 2 - 16, barWidth * progress, 32, 32);
 
     } else {
-        if(inout.webcam.prepared) inout.webcam.render(scene.graphic);
+        if (inout.webcam.prepared) inout.webcam.render(scene.graphic);
     }
 
-    // console.log(file.content.resource.face.mask);
-    
 }
 
 function windowResized() {
