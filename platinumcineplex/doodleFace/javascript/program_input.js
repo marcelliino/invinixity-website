@@ -1,7 +1,8 @@
 function touchStarted() {
-    inout.webcam.snapshot.push();
+    if(!inout.webcam.prepared) inout.webcam.initiate();
+    inout.webcam.button.push();
 }
 
 function touchEnded() {
-    inout.webcam.snapshot.pull();
+    inout.webcam.button.pull();
 }

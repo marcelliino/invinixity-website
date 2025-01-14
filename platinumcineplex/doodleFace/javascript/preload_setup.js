@@ -1,25 +1,24 @@
 function preload() {
-    scene.logo = loadImage('PlatinumCineplexLogo.png');
-    mapper.presetup(mapper.settings);
+    file.content = {logo: loadImage('resource/logo.png')};
 }
 
 function setup() {
-    
+
     createCanvas(windowWidth, windowHeight);
     pixelDensity(1);
     smooth();
 
-    console.log("Initializing...");
+    inout.webcam = new Webcam()
+    mapper = new Mapper();
 
-    file.loading = true;
-    file.counter = 0;
-    file.content = {};
+    console.log('Loading resources...');
 
-    file.content = file.scanner(file.catalog, file.extract);
+    const logo = file.content.logo;
+    file = new Loader(file.catalog);
+    file.content.logo = logo;
 
-    // textFont(file.content.font);
-    
-    inout.webcam.presetup();
+    textFont(file.content.font.Figtree.Regular);
+
     scene.graphic = createGraphics(width, height, WEBGL);
-    
+
 }
