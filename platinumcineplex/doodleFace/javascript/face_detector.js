@@ -1,27 +1,52 @@
-mapper.presetup = function (config) {
-    mapper.face.mesh = ml5.faceMesh(config);
-}
+class Mapper {
+    constructor(settings = null) {
+        this.settings = settings ||
+        {
+            maxFaces: 4,
+            refineLandmarks: false,
+            flipped: false
+        };
+        this.prepared = false;
+        this.detected = false;
+        this.face = {
+            mesh: null,
+            data: [],
+            draw: this.draw.bind(this),
+        };
 
-mapper.initiate = function () {
-    mapper.face.mesh.detectStart(inout.webcam.canvas, (results) => mapper.face.data = results);
-    mapper.face.detected = true;
-    mapper.face.tris = mapper.face.mesh.getTriangles();
-    mapper.face.uvst = mapper.face.mesh.getUVCoords();
-    
-    console.log('Mapper settings:', mapper.settings);
-    console.log('Mapper data', mapper.face.data);
-}
+        this.#presetup();
+    }
 
-mapper.face.draw = function (target_canvas) {
-    mapper.face.data.forEach(face => {
-        target_canvas.beginShape(TRIANGLES);
-        mapper.face.tris.forEach(triad => {
-            triad.forEach(index => {
-                let pt = face.keypoints[index],
-                    uv = mapper.face.uvst[index];
-                target_canvas.vertex(pt.x, pt.y, -pt.z, uv[0], uv[1]);
-            });
+    #presetup() {
+        this.face.mesh = ml5.faceMesh(this.settings, () => {
+            this.face.prepared = true;
+            console.log('FaceMesh model is ready!', this.settings);
         });
-        target_canvas.endShape();
-    });
+    }
+
+    initiate(videoInput) {
+        this.face.mesh.detectStart(videoInput, (results) => {
+            this.face.data = results;
+            this.face.detected = true;
+            console.log('Face detected with data:', this.face.data);
+
+            this.face.tris = this.face.mesh.getTriangles();
+            this.face.uvst = this.face.mesh.getUVCoords();
+        });
+    }
+
+    draw(target_canvas) {
+        this.face.data.forEach(face => {
+            target_canvas.beginShape(TRIANGLES);
+            this.face.tris.forEach(triad => {
+                triad.forEach(index => {
+                    const
+                        pt = face.keypoints[index],
+                        uv = this.face.uvst[index];
+                    target_canvas.vertex(pt.x, pt.y, -pt.z, uv[0], uv[1]);
+                });
+            });
+            target_canvas.endShape();
+        });
+    }
 }
