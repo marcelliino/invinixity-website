@@ -22,7 +22,7 @@ function draw() {
 
     scene.title.target = { x: width / 0.5, y: scene.logo.target.y, opacity: 0 };
 
-    if (!file.loading) {
+    if (!file.loading && mapper.face.prepared) {
         scene.logo.target.s = scene.minWin / 4;
         scene.logo.target.x = scene.logo.target.s / 2;
         scene.logo.target.y = scene.logo.target.s / 2;

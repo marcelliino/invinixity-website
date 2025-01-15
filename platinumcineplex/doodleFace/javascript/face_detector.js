@@ -28,7 +28,7 @@ class Mapper {
         this.face.mesh.detectStart(videoInput, (results) => {
             this.face.data = results;
             this.face.detected = true;
-            console.log('Face detected with data:', this.face.data);
+            // console.log('Face detected with data:', this.face.data);
 
             this.face.tris = this.face.mesh.getTriangles();
             this.face.uvst = this.face.mesh.getUVCoords();

@@ -28,6 +28,7 @@ class Webcam {
             },
             audio: false
         }
+        this.newstart = true;
         this.prepared = false;
         this.captured = false;
 
@@ -74,6 +75,8 @@ class Webcam {
     render(target_canvas) {
         if (!this.prepared) return;
 
+        const minWin = min(width, height);
+
         this.canvas.background(0);
         this.canvas.image(this.stream,
             0, 0,
@@ -103,8 +106,8 @@ class Webcam {
 
         if (this.captured && this.button.timer.end()) {
             mapper.face.draw(target_canvas);
-            mapper.face.mesh.detectStop();
-            mapper.face.detected = false;
+            // mapper.face.mesh.detectStop();
+            // mapper.face.detected = false;
         }
 
         target_canvas.pop();
@@ -126,24 +129,28 @@ class Webcam {
         textFont(file.content.font.Figtree.Bold);
 
         if (this.button.timer.end()) {
-            circle(pos.x * width, pos.y * height, rad * min(width, height) * (tap ? 0.64 : 0.8));
+            circle(pos.x * width, pos.y * height, rad * minWin * (tap ? 0.64 : 0.8));
             noFill();
             stroke(255, opacity);
-            strokeWeight(rad * min(width, height) * 0.125);
-            circle(pos.x * width, pos.y * height, rad * min(width, height));
+            strokeWeight(rad * minWin * 0.125);
+            circle(pos.x * width, pos.y * height, rad * minWin);
 
-            if (this.captured) {
-                this.stream.stop();
-
+            if (!this.captured) {
+                if (!this.newstart) {
+                    this.stream.stop();
+                    this.captured = true;
+                    console.log('Webcam captured:', this.captured);
+                }
+            } else {
                 noStroke();
                 fill(255);
-                textSize(min(width, height) * 0.0625 + pulse);
-                text('NEXT>', width * 0.75, pos.y * height);
+                textSize(minWin * 0.0625 + pulse);
+                text('NEXT', width * 0.75, pos.y * height);
             }
         } else {
             pulse = cos(this.button.timer.counterDown * TAU) * 16;
             fill(255);
-            textSize(min(width, height) * 0.25 + pulse);
+            textSize(minWin * 0.25 + pulse);
             text(floor(this.button.timer.counterDown + 0.5), width * 0.5, height * 0.5);
         }
     }
@@ -153,23 +160,26 @@ class Webcam {
     }
 
     #push() {
+        const minWin = min(width, height);
         const { position, radius, tapped } = this.button;
 
-        if (!tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * min(width, height) * 0.5) {
+        if (!tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * minWin * 0.5) {
             this.button.tapped = true;
             console.log('Button tapped');
         }
     }
 
     #pull() {
+        const minWin = min(width, height);
         const { position, radius, tapped } = this.button;
 
-        if (tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * min(width, height) * 0.5) {
+        if (tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * minWin * 0.5) {
             this.stream.play();
-            mapper.initiate(this.canvas);
+            if (!mapper.face.detected) mapper.initiate(this.canvas);
             this.button.timer.start();
-            this.captured = true;
-            console.log('Captured frame');
+            this.captured = false;
+            console.log('New start: ', this.newstart, 'Webcam captured:', this.captured);
+            this.newstart = false;
         }
         this.button.tapped = false;
     }
