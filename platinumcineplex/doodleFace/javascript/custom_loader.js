@@ -1,6 +1,7 @@
 class Loader {
     constructor(catalog) {
         this.catalog = catalog;
+        this.overall = this.catalog.length;
         this.loading = true;
         this.counter = 0;
         this.content = this.#scanner(this.catalog, this.#extract.bind(this));
@@ -59,7 +60,7 @@ class Loader {
 
     #fetched() {
         this.counter++;
-        console.log(`Loaded: ${this.counter}/${this.catalog.length}`);
-        this.loading = this.counter < this.catalog.length;
+        console.log(`Loaded: ${this.counter}/${this.overall}`);
+        this.loading = this.counter < this.overall;
     }
 }
