@@ -1,5 +1,5 @@
 function preload() {
-    file.content = {logo: loadImage('resource/logo.png')};
+    file.content = { logo: loadImage('resource/logo.png') };
 }
 
 function setup() {
@@ -10,6 +10,29 @@ function setup() {
 
     inout.webcam = new Webcam()
     mapper = new Mapper();
+
+    scene.minWin = min(width, height);
+    
+    scene.logo = {
+        target: {
+            x: width / 2,
+            y: height / 2 - scene.minWin / 6,
+            s: scene.minWin / 2,
+        },
+        current: {}
+    };
+    scene.logo.current = { ...scene.logo.target };
+
+    scene.bar = {
+        target: {
+            w: width / 2,
+            h: width / 32,
+            x: width / 2,
+            y: height / 1.5
+        },
+        current: {}
+    };
+    scene.bar.current = { ...scene.bar.target };
 
     console.log('Loading resources...');
 
