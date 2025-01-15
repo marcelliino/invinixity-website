@@ -12,7 +12,18 @@ function setup() {
     mapper = new Mapper();
 
     scene.minWin = min(width, height);
-    
+
+    scene.panel = {
+        target: {
+            x: 0,
+            y: 0,
+            w: width,
+            h: height
+        },
+        current: {}
+    };
+    scene.panel.current = { ...scene.panel.target };
+
     scene.logo = {
         target: {
             x: width / 2,
@@ -33,6 +44,22 @@ function setup() {
         current: {}
     };
     scene.bar.current = { ...scene.bar.target };
+
+    scene.start = {
+        target: { opacity: 0 },
+        current: {}
+    };
+    scene.start.current = { ...scene.start.target };
+
+    scene.title = {
+        target: {
+            x: width / 0.5,
+            y: scene.logo.target.y,
+            opacity: 0
+        },
+        current: {}
+    }
+    scene.title.current = { ...scene.title.target };
 
     console.log('Loading resources...');
 
