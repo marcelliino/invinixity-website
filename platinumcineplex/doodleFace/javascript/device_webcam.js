@@ -149,7 +149,7 @@ class Webcam {
     }
 
     resize(w, h) {
-        if (!this.prepared) this.canvas.resizeCanvas(w, h);
+        if (this.prepared) this.canvas.resizeCanvas(w, h);
     }
 
     #push() {
@@ -169,8 +169,8 @@ class Webcam {
             mapper.initiate(this.canvas);
             this.button.timer.start();
             this.captured = true;
-            this.button.tapped = false;
             console.log('Captured frame');
         }
+        this.button.tapped = false;
     }
 }
