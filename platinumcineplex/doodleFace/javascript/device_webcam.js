@@ -32,6 +32,7 @@ class Webcam {
         this.prepared = false;
         this.captured = false;
 
+        this.maskIndex = 0;
         this.#presetup();
     }
 
@@ -66,6 +67,9 @@ class Webcam {
 
         this.stream = createCapture(this.custom ? this.settings : VIDEO, { flipped: true }, () => {
             this.canvas = createGraphics(width, height);
+            //--------------------//
+            mapper.initiate(this.canvas);
+            //--------------------//
             this.stream.hide();
             this.prepared = true;
             console.log('Webcam initiated', this.settings);
@@ -102,11 +106,11 @@ class Webcam {
         target_canvas.noFill();
 
         target_canvas.textureMode(NORMAL);
-        if (file.content.face.mask[0]) target_canvas.texture(file.content.face.mask[0]);
+        if (file.content.face.mask[this.maskIndex]) target_canvas.texture(file.content.face.mask[this.maskIndex]);
 
-        if (this.button.timer.end() && this.captured) {
+        // if (this.button.timer.end() && this.captured) {
             mapper.face.draw(target_canvas);
-        }
+        // }
 
         //--------------------//
         // Mask Assignment Logic
@@ -188,6 +192,8 @@ class Webcam {
         if (!tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * minWin * 0.5) {
             this.button.tapped = true;
             console.log('Button tapped');
+        } else {
+            this.maskIndex = (this.maskIndex + 1) % 4;
         }
     }
 
