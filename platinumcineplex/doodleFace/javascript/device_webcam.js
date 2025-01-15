@@ -11,8 +11,8 @@ class Webcam {
         this.button = {
             position: { x: 0.5, y: 0.8 }, radius: 0.2, tapped: false,
             timer: new Timer(3),
-            push: this.push.bind(this),
-            pull: this.pull.bind(this),
+            push: this.#push.bind(this),
+            pull: this.#pull.bind(this),
         };
         this.settings = settings ||
         {
@@ -152,7 +152,7 @@ class Webcam {
         if (!this.prepared) this.canvas.resizeCanvas(w, h);
     }
 
-    push() {
+    #push() {
         const { position, radius, tapped } = this.button;
 
         if (!tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * min(width, height) * 0.5) {
@@ -161,7 +161,7 @@ class Webcam {
         }
     }
 
-    pull() {
+    #pull() {
         const { position, radius, tapped } = this.button;
 
         if (tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * min(width, height) * 0.5) {
