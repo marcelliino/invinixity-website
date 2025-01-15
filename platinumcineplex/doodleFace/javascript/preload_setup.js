@@ -16,8 +16,9 @@ function setup() {
     const logo = file.content.logo;
     file = new Loader(file.catalog);
     file.content.logo = logo;
+    file.tracker = new ProgressStat(file.overall);
 
-    textFont(file.content.font.Figtree.Regular);
+    textFont(file.content.font.Figtree.Regular, min(width, height) / 16);
 
     scene.graphic = createGraphics(width, height, WEBGL);
 
