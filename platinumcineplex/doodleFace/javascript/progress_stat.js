@@ -1,8 +1,12 @@
 class ProgressStat {
+    #progress;
+    #pulse;
+
     constructor(totalFiles) {
         this.total = totalFiles;
         this.current = 0;
         this.smoothed = 0;
+        this.#progress = 0;
 
         this.display = {
             bar: this.#displayBar.bind(this),
@@ -13,12 +17,16 @@ class ProgressStat {
     }
 
     update(loaded, smoothFactor = 0.125) {
+        loaded = max(0, loaded);
+        smoothFactor = min(1, max(0, smoothFactor));
+
         this.current = Math.min(loaded, this.total);
         this.smoothed = lerp(this.smoothed, this.current, smoothFactor);
+        this.#progress = this.smoothed / this.total;
+        this.#pulse = sin(millis() / 500 * PI);
     }
 
     #displayBar(x, y, length, thickness = length / 16) {
-        const progress = this.smoothed / this.total;
 
         push();
         translate(x - length / 2, y - thickness / 2);
@@ -29,15 +37,14 @@ class ProgressStat {
             length + thickness / 8, thickness / 0.8,
             thickness / 1.25);
 
-        fill(255);
-        rect(0, 0, length * progress, thickness, thickness / 2);
+        fill(255, 155 + 50 * this.#pulse);
+        rect(0, 0, length * this.#progress, thickness, thickness / 2);
         pop();
     }
 
     #displayCircular(x, y, radius, thickness = radius / 4) {
         const
-            progress = this.smoothed / this.total,
-            angle = progress * TWO_PI,
+            angle = this.#progress * TWO_PI,
             diameter = radius * 2;
 
         push();
@@ -48,16 +55,16 @@ class ProgressStat {
         ellipse(x, y, diameter);
 
         strokeWeight(thickness);
-        stroke(255);
+        stroke(255, 155 + 50 * this.#pulse);
         arc(x, y, diameter, diameter, -HALF_PI, -HALF_PI + angle);
         pop();
     }
 
     #displayPercentage(x, y) {
-        const percentage = floor((this.smoothed / this.total) * 100);
+        const percentage = floor(this.#progress * 100);
 
         push();
-        fill(255);
+        fill(255, 155 + 50 * this.#pulse);
         noStroke();
         text(`${percentage}%`, x, y);
         pop();
@@ -65,7 +72,7 @@ class ProgressStat {
 
     #displayCounter(x, y) {
         push();
-        fill(255);
+        fill(255, 155 + 50 * this.#pulse);
         noStroke();
         text(`${floor(this.current)}/${this.total}`, x, y);
         pop();
