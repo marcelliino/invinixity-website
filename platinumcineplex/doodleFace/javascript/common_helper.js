@@ -6,8 +6,7 @@ let scene = {
         current: 0,
         minimum: 12,
         maximum: 30
-    },
-    logo: {}
+    }
 },
     inout = {},
     mapper = {},

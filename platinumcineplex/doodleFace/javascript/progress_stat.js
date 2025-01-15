@@ -23,7 +23,7 @@ class ProgressStat {
         this.current = Math.min(loaded, this.total);
         this.smoothed = lerp(this.smoothed, this.current, smoothFactor);
         this.#progress = this.smoothed / this.total;
-        this.#pulse = sin(millis() / 500 * PI);
+        this.#pulse = cos(millis() / 500 * PI);
     }
 
     #displayBar(x, y, length, thickness = length / 16) {
@@ -34,7 +34,7 @@ class ProgressStat {
         noStroke();
         fill(255, 125);
         rect(-thickness / 8, -thickness / 8,
-            length + thickness / 8, thickness / 0.8,
+            length + thickness / 4, thickness / 0.8,
             thickness / 1.25);
 
         fill(255, 155 + 50 * this.#pulse);
