@@ -13,10 +13,10 @@ let scene = {
     file = {
         catalog: [
             "resource/face/mask_0.png",
-            // "resource/face/mask_1.png",
-            // "resource/face/mask_2.png",
-            // "resource/face/mask_3.png",
-            // "resource/face/mask_4.png",
+            "resource/face/mask_1.png",
+            "resource/face/mask_2.png",
+            "resource/face/mask_3.png",
+            "resource/face/mask_4.png",
             "resource/font/Figtree/Black.ttf",
             "resource/font/Figtree/BlackItalic.ttf",
             "resource/font/Figtree/Bold.ttf",

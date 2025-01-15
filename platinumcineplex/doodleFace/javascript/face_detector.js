@@ -12,6 +12,9 @@ class Mapper {
             mesh: null,
             data: [],
             draw: this.draw.bind(this),
+            tris: [],
+            uvst: [],
+            textures:[],
         };
 
         this.#presetup();

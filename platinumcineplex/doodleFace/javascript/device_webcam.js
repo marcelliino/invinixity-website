@@ -104,11 +104,33 @@ class Webcam {
         target_canvas.textureMode(NORMAL);
         if (file.content.face.mask[0]) target_canvas.texture(file.content.face.mask[0]);
 
-        if (this.captured && this.button.timer.end()) {
+        if (this.button.timer.end() && this.captured) {
             mapper.face.draw(target_canvas);
-            // mapper.face.mesh.detectStop();
-            // mapper.face.detected = false;
         }
+
+        //--------------------//
+        // Mask Assignment Logic
+        // if (this.button.timer.end() && this.captured) {
+        //     const faceCount = mapper.face.data.length; // Number of detected faces
+        //     const maskCount = file.content.face.mask.length;
+
+        //     // Ensure lastAssignedMasks is initialized
+        //     if (!this.lastAssignedMasks) this.lastAssignedMasks = [];
+
+        //     // Get randomized mask indices
+        //     const assignedMasks = getRandomizedMasks(faceCount, maskCount, this.lastAssignedMasks);
+
+        //     // Assign textures for each face
+        //     assignedMasks.forEach((maskIndex, faceIndex) => {
+        //         if (file.content.face.mask[maskIndex]) {
+        //             mapper.face.textures[faceIndex] = file.content.face.mask[maskIndex];
+        //         }
+        //     });
+
+        //     // Draw faces with assigned masks
+        //     mapper.face.draw(target_canvas);
+        // }
+        //--------------------//
 
         target_canvas.pop();
 
@@ -183,4 +205,23 @@ class Webcam {
         }
         this.button.tapped = false;
     }
+}
+
+function getRandomizedMasks(faceCount, maskCount, lastAssignedMasks = []) {
+    let masks = Array.from({ length: maskCount }, (_, i) => i); // Mask indices [0, 1, ..., maskCount-1]
+    let assignedMasks = [];
+
+    for (let i = 0; i < faceCount; i++) {
+        // Ensure a random selection that avoids immediate repetition
+        let availableMasks = masks.filter(m => m !== lastAssignedMasks[i]);
+        if (availableMasks.length === 0) availableMasks = masks; // Allow repetition if no other choice
+
+        let randomMask = random(availableMasks);
+        assignedMasks.push(randomMask);
+
+        // Update last assigned for the current face
+        lastAssignedMasks[i] = randomMask;
+    }
+
+    return assignedMasks;
 }
