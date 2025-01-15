@@ -13,6 +13,8 @@ function setup() {
 
     scene.minWin = min(width, height);
 
+    scene.tap = false;
+
     scene.panel = {
         target: {
             x: 0,
