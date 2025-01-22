@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+    <!-- <script src="https://unpkg.com/ml5@1/dist/ml5.js"></script> -->
+    <script src="javascript/ml5.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+    <style>
+        /* Add custom loading screen styles */
+        #p5_loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #5613bb;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="p5_loading"></div>
+    <script src="javascript/common_helper.js"></script>
+    <script src="javascript/custom_loader.js"></script>
+    <script src="javascript/progress_stat.js"></script>
+    <script src="javascript/preload_setup.js"></script>
+    <script src="javascript/main_graphics.js"></script>
+    <script src="javascript/device_webcam.js"></script>
+    <script src="javascript/face_detector.js"></script>
+    <script src="javascript/program_input.js"></script>
+    <script src="javascript/program_timer.js"></script>
+</body>
+
+</html>
