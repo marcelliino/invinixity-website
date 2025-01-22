@@ -1,5 +1,10 @@
 function preload() {
-    file.content = { logo: loadImage('resource/logo.png') };
+    file.content = {
+        splash: {
+            logo: loadImage('resource/splash/logo.png'),
+            title: loadImage('resource/splash/title.png')
+        }
+    };
 }
 
 function setup() {
@@ -8,8 +13,7 @@ function setup() {
     pixelDensity(1);
     smooth();
 
-    inout.webcam = new Webcam()
-    mapper = new Mapper();
+    inout.webcam = new Webcam();
 
     scene.minWin = min(width, height);
 
@@ -36,6 +40,16 @@ function setup() {
     };
     scene.logo.current = { ...scene.logo.target };
 
+    scene.title = {
+        target: {
+            x: width + scene.logo.target.s,
+            y: scene.logo.target.y,
+            opacity: 0
+        },
+        current: {}
+    }
+    scene.title.current = { ...scene.title.target };
+
     scene.bar = {
         target: {
             w: width / 2,
@@ -53,21 +67,11 @@ function setup() {
     };
     scene.start.current = { ...scene.start.target };
 
-    scene.title = {
-        target: {
-            x: width / 0.5,
-            y: scene.logo.target.y,
-            opacity: 0
-        },
-        current: {}
-    }
-    scene.title.current = { ...scene.title.target };
-
     console.log('Loading resources...');
 
-    const logo = file.content.logo;
+    const splash = file.content.splash;
     file = new Loader(file.catalog);
-    file.content.logo = logo;
+    file.content.splash = splash;
     file.tracker = new ProgressStat(file.overall);
 
     textFont(file.content.font.Figtree.Regular, min(width, height) / 16);

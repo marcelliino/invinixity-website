@@ -67,9 +67,6 @@ class Webcam {
 
         this.stream = createCapture(this.custom ? this.settings : VIDEO, { flipped: true }, () => {
             this.canvas = createGraphics(width, height);
-            //--------------------//
-            mapper.initiate(this.canvas);
-            //--------------------//
             this.stream.hide();
             this.prepared = true;
             console.log('Webcam initiated', this.settings);
@@ -100,43 +97,7 @@ class Webcam {
 
         target_canvas.imageMode(CENTER);
         target_canvas.image(this.canvas, 0, 0);
-
-        target_canvas.translate(-this.canvas.width * 0.5, -this.canvas.height * 0.5, 128);
-        target_canvas.noStroke();
-        target_canvas.noFill();
-
-        target_canvas.textureMode(NORMAL);
-        if (file.content.face.mask[this.maskIndex]) target_canvas.texture(file.content.face.mask[this.maskIndex]);
-
-        // if (this.button.timer.end() && this.captured) {
-            mapper.face.draw(target_canvas);
-        // }
-
-        //--------------------//
-        // Mask Assignment Logic
-        // if (this.button.timer.end() && this.captured) {
-        //     const faceCount = mapper.face.data.length; // Number of detected faces
-        //     const maskCount = file.content.face.mask.length;
-
-        //     // Ensure lastAssignedMasks is initialized
-        //     if (!this.lastAssignedMasks) this.lastAssignedMasks = [];
-
-        //     // Get randomized mask indices
-        //     const assignedMasks = getRandomizedMasks(faceCount, maskCount, this.lastAssignedMasks);
-
-        //     // Assign textures for each face
-        //     assignedMasks.forEach((maskIndex, faceIndex) => {
-        //         if (file.content.face.mask[maskIndex]) {
-        //             mapper.face.textures[faceIndex] = file.content.face.mask[maskIndex];
-        //         }
-        //     });
-
-        //     // Draw faces with assigned masks
-        //     mapper.face.draw(target_canvas);
-        // }
-        //--------------------//
-
-        target_canvas.pop();
+        target_canvas.pop()
 
         // webcam graphical user interface
         push();
@@ -179,6 +140,8 @@ class Webcam {
             textSize(minWin * 0.25 + pulse);
             text(floor(this.button.timer.counterDown + 0.5), width * 0.5, height * 0.5);
         }
+
+        pop();
     }
 
     resize(w, h) {
@@ -203,7 +166,6 @@ class Webcam {
 
         if (tapped && dist(mouseX, mouseY, position.x * width, position.y * height) <= radius * minWin * 0.5) {
             this.stream.play();
-            if (!mapper.face.detected) mapper.initiate(this.canvas);
             this.button.timer.start();
             this.captured = false;
             console.log('New start: ', this.newstart, 'Webcam captured:', this.captured);

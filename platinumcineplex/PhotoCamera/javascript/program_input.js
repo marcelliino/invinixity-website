@@ -12,7 +12,7 @@ function touchEnded() {
 
     let {x, y, w, h} = scene.bar.current;
     if (mouseX > x - w / 2 && mouseX < x + w / 2 && mouseY > y - h / 2 && mouseY < y + h / 2) {
-        if(scene.tap && !inout.webcam.prepared && mapper.face.prepared) inout.webcam.initiate();
+        if(scene.tap && !inout.webcam.prepared) inout.webcam.initiate();
     }
     scene.tap = false;
 
